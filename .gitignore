@@ -1,0 +1,11 @@
+target/
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+Servers/
+pada/.classpath
+pada/.project
+pada/.settings/*
+pada-ui/.classpath
+pada-ui/.project
+pada-ui/.settings/*
