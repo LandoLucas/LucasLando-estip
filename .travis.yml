@@ -2,3 +2,18 @@ language: java
 sudo: false
 before_script: cd pada
 script: mvn clean install
+
+language: node_js
+node_js:
+  - '0.10.33'
+before_script:
+  - 'export CHROME_BIN=chromium-browser'
+  - 'export DISPLAY=:99.0'
+  - 'sh -e /etc/init.d/xvfb start'
+  - 'npm install -g bower karma grunt-cli jshint'
+  - 'npm install' # install npm packages
+  - 'bower install' # install bower packages
+  - 'cd pada-ui'
+
+after_script:
+  - 'grunt' # or other command for build, run tests, etc
