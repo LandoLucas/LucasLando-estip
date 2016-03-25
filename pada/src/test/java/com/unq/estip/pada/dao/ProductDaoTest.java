@@ -1,6 +1,6 @@
 package com.unq.estip.pada.dao;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 import org.joda.money.Money;
 import org.junit.Test;
@@ -29,4 +29,9 @@ public class ProductDaoTest extends AbstractTransactionalJUnit4SpringContextTest
 		assertSame(prod , prodFromDB);
 	}
 	
+	
+	@Test
+	public void failTestForTravis(){
+		fail("do your stuff travis");
+	}
 }
