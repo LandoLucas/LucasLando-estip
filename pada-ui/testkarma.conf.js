@@ -21,9 +21,9 @@ module.exports = function(config) {
     files: [
       // bower:js
       // endbower
-      'WebContent/scripts/**/*.js',
-      'WebContent/mock/**/*.js',
-      'WebContent/spec/**/*.js'
+      'pada-ui/WebContent/scripts/**/*.js',
+      'pada-ui/WebContent/mock/**/*.js',
+      'pada-ui/WebContent/spec/**/*.js'
     ],
 
     // list of files / patterns to exclude
