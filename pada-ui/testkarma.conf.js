@@ -23,9 +23,11 @@ module.exports = function(config) {
       // endbower
       'pada-ui/WebContent/scripts/**/*.js',
       'pada-ui/WebContent/mock/**/*.js',
-      'pada-ui/WebContent/spec/**/*.js'
+      'pada-ui/WebContent/spec/**/*.js',
     ],
 
+    vendor: 'pada-ui/WebContent/vendor/angular/angular.js',
+    
     // list of files / patterns to exclude
     exclude: [
     ],
