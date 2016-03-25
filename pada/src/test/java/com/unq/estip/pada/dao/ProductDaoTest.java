@@ -30,8 +30,4 @@ public class ProductDaoTest extends AbstractTransactionalJUnit4SpringContextTest
 	}
 	
 	
-	@Test
-	public void failTestForTravis(){
-		fail("do your stuff travis");
-	}
 }
