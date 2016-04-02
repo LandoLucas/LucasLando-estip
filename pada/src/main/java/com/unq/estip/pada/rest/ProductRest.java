@@ -41,7 +41,7 @@ public class ProductRest {
     @Produces("application/json")
     public Response getProduct(@PathParam("id") String id) {
     	Product p = productService.findById(Integer.parseInt(id));
-    	
+
     	if(p == null) return Response.status(Response.Status.NOT_FOUND).build();
     	
     	return Response.ok().header("Access-Control-Allow-Origin", "*").entity(p).build();
