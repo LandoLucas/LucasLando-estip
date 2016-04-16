@@ -12,7 +12,7 @@ padaApp.controller('productsController', function($scope, $http, $location) {
 		$http(
 		{
 			method : 'POST',
-			url : "http://localhost:8080/pada/rest/products/save",
+			url : "http://localhost:8080/pada-server/rest/products/save",
 			data : data,
 			headers: header,
 			transformRequest : function(obj) {
@@ -42,7 +42,7 @@ padaApp.controller('productsController', function($scope, $http, $location) {
 		$http(
     			{
     				method : 'GET',
-    				url : "http://localhost:8080/pada/rest/products/product/" + 1, //ID hardocodeado para probar
+    				url : "http://localhost:8080/pada-server/rest/products/product/" + 1, //ID hardocodeado para probar
     				headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8'},
     				transformRequest : function(obj) {
     					var str = [];
