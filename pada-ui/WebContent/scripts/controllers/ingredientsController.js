@@ -1,22 +1,12 @@
 padaApp.controller('ingredientsController', function ($scope,$http,$filter,$modal) {
 	
-	
-//    $scope.open = function () {
-//        var modalInstance = $modal.open({
-//            templateUrl: 'views/newIngredientModal.html',
-//            scope: $scope
-//        });
-//        modalInstance.result.then(function () {
-//            console.log($scope.newIngredient);
-//        });
-//    };
+	$scope.ingredientAlreadyExists = function(){
+		
+		return false;
+		
+	};
 	
 	$scope.save = function(){
-		
-		console.log($scope.newIng.name);
-		console.log($scope.newIng.price);
-		console.log($scope.newIng.quantity);
-		console.log($scope.newIng.brand);
 		
 		data = {'name' : $scope.newIng.name,
 				'price': $scope.newIng.price,
@@ -40,7 +30,6 @@ padaApp.controller('ingredientsController', function ($scope,$http,$filter,$moda
 					}
 				}
 				).success(function(response) {
-					console.log("ok");
 					$scope.response = response;
 					$scope.displayedCollection.push(data);
 					
@@ -64,11 +53,7 @@ padaApp.controller('ingredientsController', function ($scope,$http,$filter,$moda
 				}
 			}
 			).success(function(response) {
-				console.log("success");
-				console.log(response);
-				
 				$scope.ingredients = response;
-				
 				$scope.displayedCollection = [].concat($scope.ingredients);
 				
 			}).error(function(response){
