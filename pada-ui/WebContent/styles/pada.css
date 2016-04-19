@@ -14,3 +14,56 @@
 .bottomright {position:absolute; bottom:0;  margin-bottom:7px; margin:7px; right: 0;}
 .bottomleft {position:absolute; bottom:0;  margin-bottom:7px; left: 100px;}
 .fixedheight { height: 200px;  width: 243px;  position:relative; border:1px solid;}
+
+
+
+a:hover{
+	text-decoration:none;
+}
+
+section, footer, header, aside, nav{
+	display: block;
+}
+
+nav{
+	display:inline-block;
+/* 	margin:0px auto 0px; */
+	background-color:#5597b4;
+	box-shadow:0 1px 1px #ccc;
+	border-radius:2px;
+	width: 100%;
+}
+
+nav a{
+	display:inline-block;
+	padding: 18px 30px;
+	color:#fff !important;
+	font-weight:bold;
+	font-size:16px;
+	text-decoration:none !important;
+	line-height:1;
+	text-transform: uppercase;
+	background-color:transparent;
+
+	-webkit-transition:background-color 0.25s;
+	-moz-transition:background-color 0.25s;
+	transition:background-color 0.25s;
+}
+
+nav a:first-child{
+	border-radius:2px 0 0 2px;
+}
+
+nav a:last-child{
+	border-radius:0 2px 2px 0;
+}
+
+nav.home .home,
+nav.projects .projects,
+nav.services .services,
+nav.contact .contact,
+nav.calendar .calendar
+{
+	background-color:#3465a4;
+}
+

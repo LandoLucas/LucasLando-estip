@@ -1,7 +1,4 @@
-<div class="container">
-	<div>
-		<h2 class="text-center">Ingredientes</h2>
-	</div>	
+<div class="container" id="ingredientsDiv">
 	
 	<form role="form" class="well clearfix" name="newIngForm" novalidate>
 		  <div class="form-group col-xs-3" ng-class="{'has-error': newIngForm.name.$invalid && !newIngForm.name.$pristine}">
@@ -9,19 +6,27 @@
 		    <input type="text" class="form-control" name="name" ng-model="newIng.name" required placeholder="Nombre"> 
 		    
 		    <span class="help-block" ng-show="newIngForm.name.$error.required && !newIngForm.name.$pristine">Requerido</span>
-		    <span class="help-block" ng-show="ingredientAlreadyExists && !newIngForm.name.$pristine">El ingrediente ya existe</span>
+		    <span class="help-block" ng-show="ingredientAlreadyExists() && !newIngForm.name.$pristine">El ingrediente ya existe</span>
 		  </div>
 		  
-		  <div class="form-group col-xs-3" ng-class="{'has-error': newIngForm.price.$invalid && !newIngForm.price.$pristine}">
+		  <div class="form-group col-xs-2" ng-class="{'has-error': newIngForm.price.$invalid && !newIngForm.price.$pristine}">
 		    <label for="price">Precio:</label>
 		    <input type="number" class="form-control" name="price" ng-model="newIng.price" required>
 		    <span class="help-block" ng-show="newIngForm.price.$error.required && !newIngForm.price.$pristine">Requerido</span>
 		  </div>
 		  
-		  <div class="form-group col-xs-3" ng-class="{'has-error': newIngForm.quantity.$invalid && !newIngForm.quantity.$pristine}">
+		  <div class="form-group col-xs-2" ng-class="{'has-error': newIngForm.quantity.$invalid && !newIngForm.quantity.$pristine}">
 		    <label for="quantity">Cantidad:</label>
 		    <input type="number" class="form-control" name="quantity" ng-model="newIng.quantity" required>
 		    <span class="help-block" ng-show="newIngForm.quantity.$error.required && !newIngForm.quantity.$pristine">Requerido</span>
+		  </div>
+		  
+		  <div class="form-group col-xs-2" ng-class="{'has-error': newIngForm.unit.$invalid && !newIngForm.unit.$pristine}">
+		    <label for="unit">Unidad:</label>
+		    <select name="unit" id="unitSelect" ng-model="newIng.unit" class="form-control" required>
+		      <option ng-repeat="unit in units" value="{{unit}}">{{unit}}</option>
+		    </select>
+		    <span class="help-block" ng-show="newIngForm.unit.$error.required && !newIngForm.unit.$pristine">Requerido</span>
 		  </div>
 		  
 		  <div class="form-group col-xs-3">
@@ -46,6 +51,7 @@
 				<th st-sort="name">Nombre</th>
 				<th st-sort="price">Precio</th>
 				<th st-sort="quantity">Cantidad</th>
+				<th st-sort="medida">Cantidad</th>
 				<th st-sort="brand">Marca</th>
 			</tr>
 		</thead>
@@ -54,13 +60,13 @@
 				<td>{{ingredient.name}}</td>
 				<td>{{ingredient.price | currency}}</td>
 				<td>{{ingredient.quantity}}</td>
+				<td>{{ingredient.unit}}</td>
 				<td>{{ingredient.brand}}</td>
-<!-- 				<td> -->
-<!-- 					<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger"> -->
-<!-- 						<i class="glyphicon glyphicon-remove-circle"> -->
-<!-- 						</i> -->
-<!-- 					</button> -->
-<!-- 				</td> -->
+				<td>
+					<button type="button" ng-click="removeIngredient(ingredient)" class="btn btn-sm btn-danger">
+						<i class="glyphicon glyphicon-remove"> </i>
+					</button>
+				</td>
 			</tr>
 		</tbody>
 		
@@ -68,4 +74,5 @@
 	<div ng-if="displayedCollection == 0">
    		<p>No hay ingredientes cargados en el sistema</p>
 	</div>
+	
 </div>
