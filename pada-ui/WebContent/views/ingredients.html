@@ -3,7 +3,7 @@
 	<form role="form" class="well clearfix" name="newIngForm" novalidate>
 		  <div class="form-group col-xs-3" ng-class="{'has-error': newIngForm.name.$invalid && !newIngForm.name.$pristine}">
 		    <label for="name">Nombre:</label>
-		    <input type="text" class="form-control" name="name" ng-model="newIng.name" required placeholder="Nombre"> 
+		    <input type="text" class="form-control" name="name" ng-model="newIng.name" required> 
 		    
 		    <span class="help-block" ng-show="newIngForm.name.$error.required && !newIngForm.name.$pristine">Requerido</span>
 		    <span class="help-block" ng-show="ingredientAlreadyExists() && !newIngForm.name.$pristine">El ingrediente ya existe</span>
