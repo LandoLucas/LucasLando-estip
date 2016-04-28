@@ -3,7 +3,7 @@
 	<form role="form" class="well clearfix" name="newIngForm" novalidate>
 		  <div class="form-group col-xs-3" ng-class="{'has-error': newIngForm.name.$invalid && !newIngForm.name.$pristine}">
 		    <label for="name">Nombre:</label>
-		    <input type="text" class="form-control" name="name" ng-model="newIng.name" required> 
+		    <input type="text" class="form-control" name="name" ng-model="newIng.name" ng-model-options="{ updateOn: 'blur' }" required> 
 		    
 		    <span class="help-block" ng-show="newIngForm.name.$error.required && !newIngForm.name.$pristine">Requerido</span>
 		    <span class="help-block" ng-show="ingredientAlreadyExists() && !newIngForm.name.$pristine">El ingrediente ya existe</span>
@@ -34,7 +34,7 @@
 		    <input type="text" class="form-control" name="brand" ng-model="newIng.brand">
 		  </div>
 		  
-		  <button type="button" ng-click="save()" class="btn btn-sm btn-success pull-right" ng-disabled="newIngForm.$invalid">
+		  <button type="button" ng-click="save()" class="btn btn-sm btn-success pull-right" ng-disabled="newIngForm.$invalid || ingredientAlreadyExists()">
 			<i class="glyphicon glyphicon-plus"> </i> Nuevo ingrediente
 		  </button>
 		  
