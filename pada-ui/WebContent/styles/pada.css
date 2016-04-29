@@ -59,9 +59,9 @@ nav a:last-child{
 }
 
 nav.home .home,
-nav.projects .projects,
-nav.services .services,
-nav.contact .contact,
+nav.products .products,
+nav.ingredients .ingredients,
+nav.clients .clients,
 nav.calendar .calendar
 {
 	background-color:#3465a4;
