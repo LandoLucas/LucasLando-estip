@@ -5,9 +5,9 @@
 .st-sort-descent:before{
     content: '\25BC';
 }
-  
+
 .st-selected{
-  color:cornflowerblue ;
+  color:cornflowerblue;
 }
 
 .bottomaligned {position:absolute; bottom:0;  margin-bottom:7px; left: 0;}

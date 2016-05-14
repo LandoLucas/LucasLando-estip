@@ -13,6 +13,10 @@ var padaApp = angular.module('padaApp', ['ngRoute','smart-table','ui.bootstrap',
             templateUrl : '/pada-ui/views/products.html',
             controller: 'productsController'
         })
+        .when('/clients', {
+            templateUrl : '/pada-ui/views/clients.html',
+            controller: 'clientController'
+        })
         .otherwise( { redirectTo: '/'} );
 
     
