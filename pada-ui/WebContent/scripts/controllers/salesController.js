@@ -62,26 +62,83 @@ padaApp.controller('salesController', ['$scope' ,'restClient', function(scope, r
 		restClient.sendPostWithoutErrorCallback(removeSaleOk, {id: sale.id}, '/sales/remove');
 	}
 	
+	scope.cancelEdition = function(){
+		scope.editing = false;
+		
+		scope.selectedProducts = [];
+		scope.totalPriceSeletedProducts = 0;
+		
+		scope.newSale.client = "";
+		scope.newSale.date = "";
+		scope.newSale.time = "";
+		scope.newSaleForm.$setPristine();
+		
+	}
+	
 	scope.editSale = function(sale){
 		
 		scope.editing = true;
 		
 		scope.newSale.client = sale.client;
-		scope.newSale.date = sale.date;
-		scope.newSale.time = sale.time;
+		scope.newSale.date = new Date(sale.date);
+		scope.newSale.time = new Date(sale.date);
+		scope.newSale.id = sale.id;
 		
 		for(var i = 0; i < sale.products.length; i++){
-			
 			scope.selectedProducts.push({
+				id: sale.products[i].product.id,
 				name : sale.products[i].product.name,
 				price : sale.products[i].product.price * sale.products[i].quantity,
 				quantity : sale.products[i].quantity
 				
 			});
-			scope.totalPriceSeletedProducts = scope.totalPriceSeletedProducts 
-				+ sale.products[i].product.price * sale.products[i].quantity;
+			scope.totalPriceSeletedProducts = scope.totalPriceSeletedProducts + sale.products[i].product.price * sale.products[i].quantity;
 		}
 		
+		for(var i = 0; i < scope.clients.length; i++){
+			if( scope.clients[i].firstName.toUpperCase() === sale.client.firstName.toUpperCase() 
+				&& scope.clients[i].lastName.toUpperCase() === sale.client.lastName.toUpperCase()	
+			  ){
+				scope.newSale.client = scope.clients[i];
+				break;
+			}
+		}
+
+	}
+	
+	scope.executeEdition = function(){
+		var data = {
+				id : scope.newSale.id,
+				clientID : scope.newSale.client.id,
+				products : scope.selectedProducts,
+				price : scope.totalPriceSeletedProducts,
+				date : scope.newSale.date, 	
+				time : scope.newSale.time
+			};
+		
+		var editSaleOk = function(response){
+			scope.editing = false;
+			scope.selectedProducts = [];
+			scope.totalPriceSeletedProducts = 0;
+			restClient.sendGetWithoutErrorCallback(scope.getAllSalesOk, '/sales/all');
+			
+			scope.newSale.client = "";
+			scope.newSale.date = "";
+			scope.newSaleForm.$setPristine();	
+			restClient.sendGetWithoutErrorCallback(scope.getAllSalesOk, '/sales/all');
+		}
+		
+		restClient.sendPostAsJsonWithoutErrorCallback(editSaleOk, data, '/sales/update');
+	}
+	
+	scope.saveSaleOk = function(response){
+		scope.selectedProducts = [];
+		scope.totalPriceSeletedProducts = 0;
+		restClient.sendGetWithoutErrorCallback(scope.getAllSalesOk, '/sales/all');
+		
+		scope.newSale.client = "";
+		scope.newSale.date = "";
+		scope.newSaleForm.$setPristine();	
 	}
 	
 	//Saves a new sale
@@ -95,16 +152,7 @@ padaApp.controller('salesController', ['$scope' ,'restClient', function(scope, r
 			time : scope.newSale.time
 		};
 		
-		var saveSaleOk = function(response){
-			scope.selectedProducts = [];
-			restClient.sendGetWithoutErrorCallback(scope.getAllSalesOk, '/sales/all');
-			
-			scope.newSale.client = "";
-			scope.newSale.date = "";
-			scope.newSaleForm.$setPristine();	
-		}
-		
-		restClient.sendPostAsJsonWithoutErrorCallback(saveSaleOk, data, '/sales/save');
+		restClient.sendPostAsJsonWithoutErrorCallback(scope.saveSaleOk, data, '/sales/save');
 	};
 	
 	

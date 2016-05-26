@@ -84,3 +84,12 @@ nav.calendar .calendar
 #addProductForNewSaleButton{
 	margin-top: 26px;
 }
+
+.saleButtons{
+	margin-top: 9%;
+}
+
+#productsSelectSale{
+	margin-left: 15%;	
+}
+

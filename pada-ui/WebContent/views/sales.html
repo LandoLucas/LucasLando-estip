@@ -21,7 +21,7 @@
 				<uib-timepicker ng-model="newSale.time" hour-step="hstep" minute-step="mstep" show-meridian="false" />				
 			</div>
       		
-	      	<div class="form-group col-xs-3 col-xs-offset-1" ng-class="{'has-error': newSaleForm.prods.$invalid && !newSaleForm.prods.$pristine}">
+	      	<div id="productsSelectSale" class="form-group col-xs-3 col-xs-offset-1" ng-class="{'has-error': newSaleForm.prods.$invalid && !newSaleForm.prods.$pristine}">
 				<label for="singleSelect">Productos:</label>
 				<select class="form-control" ng-model="newSale.prod" ng-options="prod as prod.name + ' '+ (prod.price | currency) +' ' for prod in allProducts"></select>
 				<span class="help-block" ng-show="newSaleForm.prods.$error.required && !newSaleForm.prods.$pristine">Requerido</span>
@@ -62,11 +62,14 @@
 				</tbody>
 			</table> 
 		  	
-		  	<button type="button" ng-click="editProduct()" class="form-group col-xs-2  btn btn-sm btn-primary pull-right" ng-disabled="!editing">
-				<i class="glyphicon glyphicon-plus"> </i> Editar pedido
+		  	<button type="button" ng-click="cancelEdition()" class="saleButtons form-group col-xs-1  btn btn-sm btn-warning pull-right" ng-hide="!editing">
+				 Cancelar
 		    </button> 
-		  	<button type="button" ng-click="save()" class="form-group col-xs-2 btn btn-sm btn-success pull-right" ng-disabled="newSaleForm.$invalid || !selectedProducts.length">
-				<i class="glyphicon glyphicon-plus"> </i> Salvar pedido
+		  	<button type="button" ng-click="executeEdition()" class="saleButtons form-group col-xs-1  btn btn-sm btn-primary pull-right" ng-hide="!editing">
+				Editar pedido
+		    </button> 
+		  	<button type="button" ng-click="save()" class="saleButtons form-group col-xs-1 btn btn-sm btn-success pull-right" ng-hide="editing" ng-disabled="newSaleForm.$invalid || !selectedProducts.length" >
+				Salvar pedido
 			</button>  
 		  	  
 		</div>
@@ -79,28 +82,30 @@
 			    <div class="panel-heading">
 			      <h4 class="panel-title">
 			        <p href="#" ng-click="isCollapsed = !isCollapsed">
-			          {{sale.date | date:'dd/MM/yyyy HH:mm a'}}
+			          {{sale.date | date:'dd/MM/yyyy HH:mm a'}} / {{sale.client.firstName}} {{sale.client.lastName}}
 			          <span class="pull-right">{{sale.state}}</span>
 			        </p>
 			      </h4>
 			    </div>
 			    <div uib-collapse="isCollapsed">
 			      <div class="panel-body">    
-			      	<p>{{sale.client.firstName}} {{sale.client.lastName}}</p>
 			      	<p>Precio total: {{sale.price | currency}}</p>
-			      	
 			      	<ul ng-repeat="product in sale.products">
 			      		<li>{{product.quantity}} x 
 			      		{{product.product.name}}
 			      		{{product.product.price | currency}}
 			      		</li>
 			      	</ul>
-			      	<button type="button" ng-click="removeSale(sale)" class="btn btn-sm btn-danger pull-right">
+			      	<button type="button" uib-popover="Remover venta" popover-trigger="mouseenter" ng-click="removeSale(sale)" class="btn btn-sm btn-danger pull-right" ng-hide="editing">
 						<i class="glyphicon glyphicon-remove"> </i>
 					</button>	
-			      	<button type="button" ng-click="editSale(sale)" class="btn btn-sm btn-warning pull-right">
+			      	<button type="button" uib-popover="Editar venta" popover-trigger="mouseenter" ng-click="editSale(sale)" class="btn btn-sm btn-warning pull-right" ng-hide="editing">
 						<i class="glyphicon glyphicon-edit"> </i>
 					</button>	
+					<button type="button" uib-popover="Cancelar edicion" popover-trigger="mouseenter" ng-click="cancelEdition()" class="btn btn-sm btn-warning pull-right" ng-hide="!editing">
+						<i class="glyphicon glyphicon-remove-circle"> </i>
+					</button>	
+					
 			      	
 					
 			      </div>
@@ -108,3 +113,4 @@
 			</div>
 	 	 </div>	 	
 	</div>
+</div>
