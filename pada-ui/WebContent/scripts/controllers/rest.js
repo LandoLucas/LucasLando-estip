@@ -13,6 +13,10 @@ angular.module('restClient', [])
 		sendPost(successCallback, defaultErrorCallback, data, path);
 	}
 	
+	var sendPostAsJsonWithoutErrorCallback = function(successCallback, data, path){
+		sendPostAsJson(successCallback, defaultErrorCallback, data, path);
+	}
+	
 	var sendGet = function(successCallback, errorCallback, path){
 		
 		http(
@@ -66,11 +70,32 @@ angular.module('restClient', [])
 		
 	};
 	
+	var sendPostAsJson = function(successCallback, errorCallback, data, path){
+		
+		http(
+				{
+					method : 'POST',
+					url : "http://localhost:8080/pada-server/rest" + path,
+					data : data,
+					headers: {'Content-Type' : 'application/json; charset=utf-8'},
+				}
+		).success(function(response) {
+			successCallback(response);
+		}).error(function(response) {
+			console.log(response)
+			errorCallback(response);
+		});
+		
+		
+	};
+	
 	
   return {
 	sendGetWithoutErrorCallback: sendGetWithoutErrorCallback,
 	sendPostWithoutErrorCallback: sendPostWithoutErrorCallback,
+	sendPostAsJsonWithoutErrorCallback: sendPostAsJsonWithoutErrorCallback,
 	sendGet: sendGet,
-    sendPost: sendPost
+    sendPost: sendPost,
+    sendPostAsJson: sendPostAsJson
   };
 }]);

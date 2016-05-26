@@ -1,4 +1,4 @@
-padaApp.controller('ingredientsController', ['$scope','$filter','$modal','restClient', function (scope,filter,modal,restClient) {
+padaApp.controller('ingredientsController', ['$scope','$filter','restClient', function (scope,filter,restClient) {
 	
 	
 	//Valida que un ingrediente siendo tipeado no exista ya en la lista

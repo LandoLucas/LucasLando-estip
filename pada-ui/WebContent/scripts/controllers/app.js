@@ -1,10 +1,10 @@
-var padaApp = angular.module('padaApp', ['ngRoute','smart-table','ui.bootstrap','restClient'], function($routeProvider, $locationProvider) {
+var padaApp = angular.module('padaApp', ['ngRoute','smart-table','ngAnimate', 'ui.bootstrap','restClient'], function($routeProvider, $locationProvider) {
  
 	$routeProvider
-//		.when('/', {
-//        	templateUrl : '/pada-ui/index.html',
-//        	controller: 'indexController'
-//		})
+		.when('/sales', {
+        	templateUrl : '/pada-ui/views/sales.html',
+        	controller: 'salesController'
+		})
 	    .when('/ingredients', {
 	        templateUrl : '/pada-ui/views/ingredients.html',
 	        controller: 'ingredientsController'
@@ -17,7 +17,7 @@ var padaApp = angular.module('padaApp', ['ngRoute','smart-table','ui.bootstrap',
             templateUrl : '/pada-ui/views/clients.html',
             controller: 'clientController'
         })
-        .otherwise( { redirectTo: '/'} );
+//        .otherwise( { redirectTo: '/'} );
 
     
 //    $locationProvider.html5Mode(true);

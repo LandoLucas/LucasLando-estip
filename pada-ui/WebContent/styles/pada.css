@@ -27,7 +27,6 @@ section, footer, header, aside, nav{
 
 nav{
 	display:inline-block;
-/* 	margin:0px auto 0px; */
 	background-color:#5597b4;
 	box-shadow:0 1px 1px #ccc;
 	border-radius:2px;
@@ -58,7 +57,7 @@ nav a:last-child{
 	border-radius:0 2px 2px 0;
 }
 
-nav.home .home,
+nav.sales .sales,
 nav.products .products,
 nav.ingredients .ingredients,
 nav.clients .clients,
@@ -67,3 +66,21 @@ nav.calendar .calendar
 	background-color:#3465a4;
 }
 
+.full button span {
+  background-color: limegreen;
+  border-radius: 32px;
+  color: black;
+}
+.partially button span {
+  background-color: orange;
+  border-radius: 32px;
+  color: black;
+}
+
+#salesTimePickerdiv{
+	margin-top: -9px;
+}
+
+#addProductForNewSaleButton{
+	margin-top: 26px;
+}
