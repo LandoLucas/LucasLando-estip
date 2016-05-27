@@ -61,7 +61,8 @@ nav.sales .sales,
 nav.products .products,
 nav.ingredients .ingredients,
 nav.clients .clients,
-nav.calendar .calendar
+nav.calendar .calendar,
+nav.stores .stores
 {
 	background-color:#3465a4;
 }
