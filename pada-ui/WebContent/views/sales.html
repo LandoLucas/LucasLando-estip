@@ -77,7 +77,11 @@
 	</form>
 
 	<div>
-	  	<div ng-repeat="sale in sales | orderBy: sortDate : false">
+	 	
+	 	<input type="text" class="form-control" placeholder="Buscar" ng-model="searchText"/>
+	 	<input type="text" class="form-control" placeholder="Sub-busqueda" ng-model="searchText2" ng-hide="!searchText"/>
+	 	
+	  	<div ng-repeat="sale in sales | orderBy: sortDate : false | filter:searchText | filter:searchText2">
 		  	<div class="panel panel-default">
 			    <div class="panel-heading">
 			      <h4 class="panel-title">
@@ -96,17 +100,29 @@
 			      		{{product.product.price | currency}}
 			      		</li>
 			      	</ul>
+			      	
 			      	<button type="button" uib-popover="Remover venta" popover-trigger="mouseenter" ng-click="removeSale(sale)" class="btn btn-sm btn-danger pull-right" ng-hide="editing">
-						<i class="glyphicon glyphicon-remove"> </i>
+						<i class="glyphicon glyphicon-trash"> </i>
 					</button>	
-			      	<button type="button" uib-popover="Editar venta" popover-trigger="mouseenter" ng-click="editSale(sale)" class="btn btn-sm btn-warning pull-right" ng-hide="editing">
+					<button type="button" uib-popover="Editar venta" popover-trigger="mouseenter" ng-click="editSale(sale)" class="btn btn-sm btn-warning pull-right" ng-hide="editing">
 						<i class="glyphicon glyphicon-edit"> </i>
 					</button>	
+			      	
+			      	<button type="button" uib-popover="Pedido" popover-trigger="mouseenter" ng-click="requested(sale)" class="btn btn-sm btn-success pull-right" ng-hide="editing || (sale.state === 'Pedido')">
+						<i class="glyphicon glyphicon-bell"> </i>
+					</button>
+					<button type="button" uib-popover="En preparacion" popover-trigger="mouseenter" ng-click="inPreparation(sale)" class="btn btn-sm btn-success pull-right" ng-hide="editing || (sale.state === 'Preparando')">
+						<i class="glyphicon glyphicon-fire"> </i>
+					</button>
+					<button type="button" uib-popover="Finalizado" popover-trigger="mouseenter" ng-click="prepared(sale)" class="btn btn-sm btn-success pull-right" ng-hide="editing || (sale.state === 'Listo')">
+						<i class="glyphicon glyphicon-gift"> </i>
+					</button>
+			      	<button type="button" uib-popover="Entregado" popover-trigger="mouseenter" ng-click="delivered(sale)" class="btn btn-sm btn-success pull-right" ng-hide="editing || (sale.state === 'Entregado')">
+						<i class="glyphicon glyphicon-cutlery"> </i>
+					</button>
 					<button type="button" uib-popover="Cancelar edicion" popover-trigger="mouseenter" ng-click="cancelEdition()" class="btn btn-sm btn-warning pull-right" ng-hide="!editing">
 						<i class="glyphicon glyphicon-remove-circle"> </i>
 					</button>	
-					
-			      	
 					
 			      </div>
 			    </div>

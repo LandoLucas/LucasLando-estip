@@ -53,6 +53,28 @@ padaApp.controller('salesController', ['$scope' ,'restClient', function(scope, r
 		}
 	};
 	
+	var changedStateOK = function(response){
+		restClient.sendGetWithoutErrorCallback(scope.getAllSalesOk, '/sales/all');
+	}
+	
+	scope.delivered = function(sale){
+		restClient.sendPostWithoutErrorCallback(changedStateOK, {id: sale.id}, '/sales/delivered');
+	}
+	
+	scope.prepared = function(sale){
+		restClient.sendPostWithoutErrorCallback(changedStateOK, {id: sale.id}, '/sales/prepared');
+	}
+	
+	scope.requested = function(sale){
+		restClient.sendPostWithoutErrorCallback(changedStateOK, {id: sale.id}, '/sales/requested');
+	}
+	
+	scope.inPreparation = function(sale){
+		restClient.sendPostWithoutErrorCallback(changedStateOK, {id: sale.id}, '/sales/inPreparation');
+	}
+	
+	
+	
 	scope.removeSale = function(sale){
 		
 		var removeSaleOk = function(response){
